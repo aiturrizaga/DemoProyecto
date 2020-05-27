@@ -65,6 +65,11 @@ public class DlgVistaPacientes extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPacientesMouseClicked(evt);
+            }
+        });
         srcPacientes.setViewportView(tblPacientes);
 
         btnNuevoPaciente.setText("Nuevo paciente");
@@ -108,6 +113,22 @@ public class DlgVistaPacientes extends javax.swing.JDialog {
         dlgNuevoPaciente.setVisible(true);
         cargarListaPacientes();
     }//GEN-LAST:event_btnNuevoPacienteActionPerformed
+
+    private void tblPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPacientesMouseClicked
+        int filaSeleccionada = tblPacientes.getSelectedRow();
+        
+        DlgEditarPaciente dlgEditarPaciente = new DlgEditarPaciente(parentFrame, true);
+        dlgEditarPaciente.idPaciente = tblPacientes.getModel().getValueAt(filaSeleccionada, 0).toString();
+        dlgEditarPaciente.nombrePaciente = tblPacientes.getModel().getValueAt(filaSeleccionada, 1).toString();
+        dlgEditarPaciente.apellidoPaciente = tblPacientes.getModel().getValueAt(filaSeleccionada, 2).toString();
+        dlgEditarPaciente.direcPaciente = tblPacientes.getModel().getValueAt(filaSeleccionada, 3).toString();
+        dlgEditarPaciente.fechaNacPaciente = tblPacientes.getModel().getValueAt(filaSeleccionada, 4).toString();
+        dlgEditarPaciente.dniPaciente = tblPacientes.getModel().getValueAt(filaSeleccionada, 5).toString();
+        dlgEditarPaciente.celularPaciente = tblPacientes.getModel().getValueAt(filaSeleccionada, 6).toString();
+        
+        dlgEditarPaciente.setVisible(true);
+        cargarListaPacientes();
+    }//GEN-LAST:event_tblPacientesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

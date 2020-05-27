@@ -28,13 +28,34 @@ public class PacienteDao extends Conexion {
         }
     }
 
+    // Metodo para actualizar paciente
+    public void actualizarPaciente(PacienteModelo paciente) throws SQLException {
+        try {
+            this.conexion();
+            String sql = "UPDATE PACIENTE SET NOMBRE=?, APELLIDO=?, DIRECCION=?, FECHA_NAC = STR_TO_DATE(?, '%d/%m/%Y'), DNI=?, CELULAR=? WHERE ID=?";
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
+            ps.setString(1, paciente.getNombre());
+            ps.setString(2, paciente.getApellido());
+            ps.setString(3, paciente.getDireccion());
+            ps.setString(4, paciente.getFechaNacimiento());
+            ps.setString(5, paciente.getDni());
+            ps.setString(6, paciente.getCelular());
+            ps.setInt(7, paciente.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Ocurrió un error al agregar paciente: " + e.getMessage());
+        } finally {
+            this.desconectar();
+        }
+    }
+
     // Metodo para listar pacientes
     public ArrayList<PacienteModelo> listarPacientes() throws SQLException {
         this.conexion();
         ResultSet rs;
         ArrayList<PacienteModelo> lista;
         try {
-            String sql = "SELECT ID, NOMBRE, APELLIDO, DIRECCION, FECHA_NAC, DNI, CELULAR FROM PACIENTE";
+            String sql = "SELECT ID, NOMBRE, APELLIDO, DIRECCION, DATE_FORMAT(FECHA_NAC, '%d/%m/%Y') as FECHA_NAC, DNI, CELULAR FROM PACIENTE";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             rs = ps.executeQuery();
             lista = new ArrayList<>();
