@@ -13,8 +13,8 @@ public class PacienteControlador {
 
     public boolean agregarPaciente(String nombre, String apellido, String direc, String fechaNac, String dni, String celular) {
         try {
-            dao.agregarPaciente(new PacienteModelo(null, nombre, apellido, direc, fechaNac, dni, celular));
-            return true;
+            boolean esCorrecto = dao.agregarPaciente(new PacienteModelo(null, nombre, apellido, direc, fechaNac, dni, celular));
+            return esCorrecto;
         } catch (SQLException e) {
             System.err.println("Error en el controlador de agregar paciente");
             return false;
@@ -23,10 +23,20 @@ public class PacienteControlador {
 
     public boolean actualizarPaciente(Integer id, String nombre, String apellido, String direc, String fechaNac, String dni, String celular) {
         try {
-            dao.actualizarPaciente(new PacienteModelo(id, nombre, apellido, direc, fechaNac, dni, celular));
-            return true;
+            boolean esCorrecto = dao.actualizarPaciente(new PacienteModelo(id, nombre, apellido, direc, fechaNac, dni, celular));
+            return esCorrecto;
         } catch (SQLException e) {
             System.err.println("Error en el controlador de agregar paciente");
+            return false;
+        }
+    }
+
+    public boolean inactivarPaciente(Integer id) {
+        try {
+            boolean esCorrecto = dao.inactivarPaciente(id);
+            return esCorrecto;
+        } catch (SQLException e) {
+            System.err.println("Error en el controlador de inactivar paciente");
             return false;
         }
     }

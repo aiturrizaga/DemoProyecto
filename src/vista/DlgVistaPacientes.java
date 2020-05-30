@@ -101,8 +101,8 @@ public class DlgVistaPacientes extends javax.swing.JDialog {
                     .addComponent(lblTitulo)
                     .addComponent(btnNuevoPaciente))
                 .addGap(30, 30, 30)
-                .addComponent(srcPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addComponent(srcPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
